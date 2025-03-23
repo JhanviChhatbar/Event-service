@@ -1,10 +1,7 @@
 package com.orenda.event_service.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "ticket_types")
@@ -12,6 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class TicketType {
 
     @Id
@@ -22,8 +20,8 @@ public class TicketType {
     @JoinColumn(name = "event_id")
     private Event event;
 
-    @Enumerated(EnumType.STRING)
-    private TypeOfTicket typeOfTicket;
+    //@Enumerated(EnumType.STRING)    //Improvement
+    private String typeOfTicket;
 
     @Column(nullable = false)
     private Double price;
