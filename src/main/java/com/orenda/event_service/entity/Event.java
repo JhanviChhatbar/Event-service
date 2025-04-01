@@ -1,6 +1,6 @@
 package com.orenda.event_service.entity;
 
-import jakarta.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,11 +32,26 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private EventStatus eventStatus;
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    @OneToMany( cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_id")
     private List<TicketType> ticketTypes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    private EventMetaData eventMetaData;
+//    public void setTicketTypes(List<TicketType> ticketTypes) {
+//        this.ticketTypes.clear();
+//        for (TicketType ticketType : ticketTypes) {
+//            ticketType.setEvent(this);  // Maintain bidirectional relationship
+//            this.ticketTypes.add(ticketType);
+//        }
+//    }
+//
+//    public void addTicketType(TicketType ticketType) {
+//        ticketTypes.add(ticketType);
+//        ticketType.setEvent(this);  // Set the bidirectional relationship
+//    }
+
+    // will update as improvement in functionality
+//    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+//    private EventMetaData eventMetaData;
 
 
 }
