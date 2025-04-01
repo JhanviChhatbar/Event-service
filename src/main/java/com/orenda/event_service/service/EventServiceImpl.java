@@ -22,6 +22,7 @@ public class EventServiceImpl implements EventService{
     @Override
     public Event createEvent(CreateEventRequest createEventRequest) {
         List<TicketType> ticketTypes = new ArrayList<>();
+        Event event = new Event();
         for(TicketTypeRequest ticketTypeRequest : createEventRequest.getTicketTypes()){
             // check if new TicketType is required
             TicketType ticketType = TicketType.builder()
@@ -29,10 +30,12 @@ public class EventServiceImpl implements EventService{
                     .typeOfTicket(ticketTypeRequest.getTypeOfTicket())
                     .price(ticketTypeRequest.getPrice())
                     .build();
+
+            //event.addTicketType(ticketType);
             ticketTypes.add(ticketType);
         }
 
-        Event event = Event.builder()
+        event = Event.builder()
                 .eventName(createEventRequest.getEventName())
                 .venue(createEventRequest.getVenue())
                 .date(createEventRequest.getDate())
